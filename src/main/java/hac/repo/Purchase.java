@@ -6,6 +6,10 @@ import jakarta.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+/**
+ * a purchase is a record of a user buying a product. You should not need to edit this file
+ * but if you feel like you need to, please get in touch with the teacher.
+ */
 @Entity
 public class Purchase implements Serializable {
     @Id
@@ -13,14 +17,14 @@ public class Purchase implements Serializable {
     private Long id;
 
     @NotEmpty(message = "Name is mandatory")
-    private String userName;
+    private String email;
 
     // default value 0
-    private Integer price = 0;
+    private Double payment = 0.0;
 
-    public Purchase(String userName, Integer total) {
-        this.userName = userName;
-        this.price = total;
+    public Purchase(String email, Double total) {
+        this.email = email;
+        this.payment = total;
     }
 
     public Purchase() {
