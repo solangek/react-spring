@@ -3,7 +3,11 @@ package hac.repo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
 /**
@@ -16,10 +20,17 @@ public class Purchase implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @NotEmpty(message = "Name is mandatory")
+    @NotEmpty(message = "First name is mandatory")
+    private String firstName;
+
+    @NotEmpty(message = "Last name is mandatory")
+    private String lastName;
+
+    @NotEmpty(message = "Email is mandatory")
+    @Email(message = "Email should be valid")
     private String email;
 
-    // default value 0
+    @PositiveOrZero(message = "Payment must be positive or zero")
     private Double payment = 0.0;
 
     public Purchase(String email, Double total) {
@@ -30,4 +41,48 @@ public class Purchase implements Serializable {
     public Purchase() {
 
     }
+
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Double getPayment() {
+        return payment;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName=firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName=lastName;
+    }
+
+    public void setPayment(Double payment) {
+        this.payment=payment;
+    }
+
+    public void setEmail(String email) {
+        this.email=email;
+    }
+
 }
+
+
