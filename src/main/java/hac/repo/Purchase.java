@@ -2,11 +2,10 @@ package hac.repo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
@@ -17,7 +16,7 @@ import java.io.Serializable;
 @Entity
 public class Purchase implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "First name is mandatory")
@@ -33,9 +32,11 @@ public class Purchase implements Serializable {
     @PositiveOrZero(message = "Payment must be positive or zero")
     private Double payment = 0.0;
 
-    public Purchase(String email, Double total) {
+    public Purchase(String email, Double total, String firstName, String lastName) {
         this.email = email;
         this.payment = total;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Purchase() {
