@@ -16,6 +16,9 @@ import java.util.List;
  * You may add new routes to this controller if you want to test your code.
  * This class will not be graded (ignored by the grader).
  */
+// can use this to allow requests from a specific origin (e.g. http://localhost:3000/)
+// in out case React is running on port 3000 and Spring Boot is running on port 8080
+// @CrossOrigin("http://localhost:3000/")
 @RestController
 @RequestMapping("/debug")
 public class DebugController {
